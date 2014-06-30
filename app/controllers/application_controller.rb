@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   def show
     @user = User.find_by_id(params['id'])
-    
+    if @user == nil
+      redirect_to "/user"
+    else
     render 'show'
   end
   
@@ -16,4 +18,5 @@ class ApplicationController < ActionController::Base
     
     redirect_to "/user/#{u.id}"
   end
+end
 end
